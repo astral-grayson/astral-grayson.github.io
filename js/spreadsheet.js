@@ -1,9 +1,19 @@
 var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/14Ks6Wd6QR0gkshqqvcdSfpr-fCbU4f5SNssG7L7afLM/edit?usp=sharing';
 
 function init() {
+  // populate projects
   Tabletop.init( { key: publicSpreadsheetUrl,
                    callback: insertData,
-                   simpleSheet: true } )
+                   simpleSheet: true } );
+
+  // make age correct
+  var date = new Date();
+  if (date.getMonth() < 4) {
+    document.getElementById("age").innerHTML = date.getFullYear() - 2001;
+  }
+  else {
+    document.getElementById("age").innerHTML = date.getFullYear() - 2000;                
+  }
 }
 
 function insertData(data, tabletop) {
